@@ -36,7 +36,7 @@ type ComponentNestedModule struct {
 
 	// Device
 	// Required: true
-	Device *int64 `json:"device"`
+	Device *NestedDevice `json:"device"`
 
 	// Display
 	// Read Only: true
@@ -59,10 +59,6 @@ type ComponentNestedModule struct {
 func (m *ComponentNestedModule) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDevice(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateModuleBay(formats); err != nil {
 		res = append(res, err)
 	}
@@ -74,15 +70,6 @@ func (m *ComponentNestedModule) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ComponentNestedModule) validateDevice(formats strfmt.Registry) error {
-
-	if err := validate.Required("device", "body", m.Device); err != nil {
-		return err
-	}
-
 	return nil
 }
 
