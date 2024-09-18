@@ -65,7 +65,7 @@ type Device struct {
 
 	// device role
 	// Required: true
-	DeviceRole *NestedDeviceRole `json:"device_role"`
+	DeviceRole *NestedDeviceRole `json:"role"`
 
 	// device type
 	// Required: true
